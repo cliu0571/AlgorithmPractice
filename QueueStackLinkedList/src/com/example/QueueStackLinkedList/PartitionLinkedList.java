@@ -14,9 +14,29 @@ public class PartitionLinkedList {
 
 	public ListNode partition(ListNode head, int target) {
 	    // Write your solution here
+		if (head == null || head.next == null) {
+			return head;
+		}
 		
+		ListNode small = new ListNode(0);
+		ListNode large = new ListNode(0);
+		ListNode currSmall = small;
+		ListNode currLarge= large;		
 		
+		while (head != null) {
+			if (head.value < target) {
+				currSmall.next = head;
+				currSmall = currSmall.next;
+			}
+			else {
+				currLarge.next = head;
+				currLarge = currLarge.next;
+			}
+			head = head.next;
+		}
 		
-		
+		currLarge.next = null;
+		currSmall.next = large.next;
+		return small.next;
 	  }
 }
