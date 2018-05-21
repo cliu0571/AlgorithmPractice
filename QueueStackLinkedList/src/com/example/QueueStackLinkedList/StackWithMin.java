@@ -17,7 +17,7 @@ public class StackWithMin {
 	  public Integer pop() {
 	    Integer result;
 	    if (!stack.isEmpty()) {
-	    	result = stack.
+	    	result = stack
 	    }
 	  }
 	  

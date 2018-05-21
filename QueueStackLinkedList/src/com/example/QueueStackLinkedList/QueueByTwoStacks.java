@@ -32,8 +32,10 @@ public class QueueByTwoStacks {
 	}
 
 	private void move() {
-		while (!in.isEmpty()) {
-			out.offerFirst(in.pollFirst());
+		if (out.isEmpty()) {
+			while (!in.isEmpty()) {
+				out.offerFirst(in.pollFirst());
+			}
 		}
 	}
 
