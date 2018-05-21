@@ -1,7 +1,9 @@
 package com.example;
 
 //Description
-//Check if a given binary tree is balanced. A balanced binary tree is one in which the depths of every node’s left and right subtree differ by at most 1.
+//Check if a given binary tree is balanced. 
+//A balanced binary tree is one in which the depths of every node’s left and right subtree 
+//differ by at most 1.
 //
 //Examples
 //
@@ -52,6 +54,42 @@ package com.example;
 
 public class CheckIfBinaryTreeIsBalanced {
 	public boolean isBalanced(TreeNode root) {
-	    // Write your solution here
-	  }
+		// Write your solution here
+		if (root == null) {
+			return true;
+		}
+
+		return height(root) != -1;
+	}
+
+	private int height(TreeNode root) {
+		if (root == null) {
+			return 0;
+		}
+
+		// if one of both subtrees height > 1, return -1,
+		// no need to get the height anymore
+		int leftHeight = height(root.left);
+		if (leftHeight == -1) {
+			return -1;
+		}
+		int rightHeight = height(root.right);
+		if (rightHeight == -1) {
+			return -1;
+		}
+
+		if (Math.abs(leftHeight - rightHeight) > 1) {
+			return -1;
+		} else {
+			return Math.max(leftHeight, rightHeight) + 1;
+		}
+	}
+
+	private int getHeight(TreeNode root) {
+		if (root == null) {
+			return 0;
+		}
+
+		return Math.max(getHeight(root.left), getHeight(root.right)) + 1;
+	}
 }
