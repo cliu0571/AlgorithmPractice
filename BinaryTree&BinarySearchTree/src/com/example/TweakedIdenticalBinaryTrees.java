@@ -1,7 +1,8 @@
 package com.example;
 
 //Description
-//Determine whether two given binary trees are identical assuming any number of ‘tweak’s are allowed. A tweak is defined as a swap of the children of one node in the tree.
+//Determine whether two given binary trees are identical assuming any number of ï¿½tweakï¿½s are allowed. 
+//A tweak is defined as a swap of the children of one node in the tree.
 //
 //Examples
 //
@@ -50,5 +51,18 @@ package com.example;
 public class TweakedIdenticalBinaryTrees {
 	public boolean isTweakedIdentical(TreeNode one, TreeNode two) {
 	    // Write your solution here
+		
+		if (one == null && two == null) {
+			return true;
+		}else if (one == null || two == null) {
+			return false;
+		}else if (one.key != two.key) {
+			return false;
+		}
+		
+		return isTweakedIdentical(one.left, two.right) && isTweakedIdentical(one.right, two.left)
+				||
+				isTweakedIdentical(one.left, two.left) && isTweakedIdentical(one.right, two.left);
+		
 	  }
 }
