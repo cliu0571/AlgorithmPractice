@@ -13,6 +13,23 @@ package com.example;
 
 public class IsBinarySearchTreeOrNot {
 	public boolean isBST(TreeNode root) {
+		
+		return isBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
 	    // Write your solution here
+	}
+	
+	private boolean isBST(TreeNode root, Integer min, Integer max) {
+		if (root == null) {
+			return true;
+		}
+		
+		if (root.key < min || root.key > max) {
+			return false;
+		}
+		
+		return isBST(root.left, min, root.key-1) 
+				&&
+				isBST(root.right, root.key+1, max);
+		
 	  }
 }
